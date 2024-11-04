@@ -252,8 +252,17 @@ function endsWith(str, substr) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  if (minutes < 10 && seconds < 10) {
+    return `0${minutes}:0${seconds}`;
+  }
+  if (minutes < 10) {
+    return `0${minutes}:${seconds}`;
+  }
+  if (seconds < 10) {
+    return `${minutes}:0${seconds}`;
+  }
+  return `${minutes}:${seconds}`;
 }
 
 /**
@@ -283,8 +292,8 @@ function reverseString(str) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  return str.split('').sort().join('');
 }
 
 /**
@@ -393,8 +402,30 @@ function reverseWords(str) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  const upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const lowerCase = 'abcdefghijklmnopqrstuvwxyz';
+  const numbers = '0123456789';
+  const symbols = '!/.,&@#$%^*()_-=+*';
+
+  let string = '';
+  let el = '';
+  for (let i = 0; i < str.length; i += 1) {
+    if (
+      str[i] === ' ' ||
+      numbers.includes(str[i]) ||
+      symbols.includes(str[i])
+    ) {
+      el = str[i];
+      string += el;
+    }
+    if (upperCase.includes(str[i])) {
+      string += str[i].toLowerCase();
+    } else if (lowerCase.includes(str[i])) {
+      string += str[i].toUpperCase();
+    }
+  }
+  return string;
 }
 
 /**
