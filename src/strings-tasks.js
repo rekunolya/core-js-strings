@@ -341,8 +341,15 @@ function countVowels(str) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const strRes = str.replaceAll(' ', '').toLowerCase();
+  const arr = str.split('');
+  const string = arr.reverse().join('');
+  const stringRes = string.replaceAll(' ', '').toLowerCase();
+  if (strRes.localeCompare(stringRes) === 0) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -371,8 +378,8 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  return str.split('').reverse().join('').split(' ').reverse().join(' ');
 }
 
 /**
